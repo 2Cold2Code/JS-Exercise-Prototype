@@ -60,7 +60,6 @@ Person.prototype.toString = function() {
     return `${this.name}, ${this.age}`;
 }
 
-
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -76,7 +75,32 @@ Person.prototype.toString = function() {
 */
 
 function Car(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+}
 
+Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+}
+
+Car.prototype.drive = function(distance) {
+    // tank = gallons; tank relative to distance: gallons = 1/(milesPerGallon * distance);
+    // distance relative to tank: distance = milesPerGallon * gallons
+    const distPerMileage = distance / this.milesPerGallon;
+    if (this.tank >= distPerMileage) {
+        this.odometer += distance;
+        this.tank -= distPerMileage;
+    } else if (this.tank < distPerMileage) {
+        // if tank has less gas than distance targeted:
+        // car goes distance able out of target distance; odometer goes distance able.
+        distance = this.tank * this.milesPerGallon;
+        this.odometer += distance;
+        this.tank -= distancePerMileage;
+        // this.odometer += distance - this.tank;
+        return `I ran out of fuel at ${distance} miles!`;
+    }
 }
 
 /*
@@ -86,12 +110,13 @@ function Car(model, milesPerGallon) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(name, age, favoriteToy) {
 
+
+function Baby(name, age, favoriteToy) {
 
 }
 
-Object.create(Person)
+
 
 /* 
   TASK 4
@@ -100,7 +125,7 @@ Object.create(Person)
   1. Global/window, where it refers to the window in a browser or the global/console in node.
   2. New, where, when the keyword 'New' declares an object, it refers to the object to which new refers.
   3. Implicit, where the period to the right signifies a property on the object of which it is a part.
-  4. Explicit, ...
+  4. Explicit, binding a property to another object by .call() or .apply() methods.
 */
 
 
