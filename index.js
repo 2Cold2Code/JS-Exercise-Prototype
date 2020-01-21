@@ -97,7 +97,7 @@ Car.prototype.drive = function(distance) {
         // car goes distance able out of target distance; odometer goes distance able.
         distance = this.tank * this.milesPerGallon;
         this.odometer += distance;
-        this.tank -= distancePerMileage;
+        this.tank -= distance / this.milesPerGallon;
         // this.odometer += distance - this.tank;
         return `I ran out of fuel at ${distance} miles!`;
     }
@@ -110,13 +110,17 @@ Car.prototype.drive = function(distance) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-
-
 function Baby(name, age, favoriteToy) {
+    Person.call(this, name, age, favoriteToy)
+    this.favoriteToy = favoriteToy;
 
 }
 
+Baby.prototype = Object.create(Person.prototype);
 
+Baby.prototype.play = function() {
+    return `Playing with ${this.favoriteToy}`;
+}
 
 /* 
   TASK 4
@@ -125,7 +129,7 @@ function Baby(name, age, favoriteToy) {
   1. Global/window, where it refers to the window in a browser or the global/console in node.
   2. New, where, when the keyword 'New' declares an object, it refers to the object to which new refers.
   3. Implicit, where the period to the right signifies a property on the object of which it is a part.
-  4. Explicit, binding a property to another object by .call() or .apply() methods.
+  4. Explicit, ...
 */
 
 
