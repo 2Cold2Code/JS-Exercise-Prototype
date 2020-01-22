@@ -86,19 +86,14 @@ Car.prototype.fill = function(gallons) {
 }
 
 Car.prototype.drive = function(distance) {
-    // tank = gallons; tank relative to distance: gallons = 1/(milesPerGallon * distance);
-    // distance relative to tank: distance = milesPerGallon * gallons
     const distPerMileage = distance / this.milesPerGallon;
     if (this.tank >= distPerMileage) {
-        this.odometer += distance;
         this.tank -= distPerMileage;
-    } else if (this.tank < distPerMileage) {
-        // if tank has less gas than distance targeted:
-        // car goes distance able out of target distance; odometer goes distance able.
-        distance = this.tank * this.milesPerGallon;
         this.odometer += distance;
+    } else if (this.tank < distPerMileage) {
+        distance = this.tank * this.milesPerGallon;
         this.tank -= distance / this.milesPerGallon;
-        // this.odometer += distance - this.tank;
+        this.odometer += distance;
         return `I ran out of fuel at ${distance} miles!`;
     }
 }
