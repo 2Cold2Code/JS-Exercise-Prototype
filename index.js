@@ -46,9 +46,8 @@ function Person(name, age) {
 }
 
 Person.prototype.eat = function(someFood) {
-    this.stomach.push(someFood);
-    if (this.stomach.length > 10) {
-        this.poop();
+    if (this.stomach.length < 10) {
+        this.stomach.push(someFood);
     }
 }
 
@@ -57,22 +56,21 @@ Person.prototype.poop = function() {
 }
 
 Person.prototype.toString = function() {
-    return `${this.name}, ${this.age}`;
-}
-
-/*
-  TASK 2
-    - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
-    - All instances built with Car:
-        + should initialize with an `tank` at 0
-        + should initialize with an `odometer` at 0
-    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
-    - STRETCH: Give cars ability to `.drive(distance)`. The distance driven:
-        + Should cause the `odometer` to go up.
-        + Should cause the the `tank` to go down taking `milesPerGallon` into account.
-    - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
-        + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
-*/
+        return `${this.name}, ${this.age}`;
+    }
+    /*
+      TASK 2
+        - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
+        - All instances built with Car:
+            + should initialize with an `tank` at 0
+            + should initialize with an `odometer` at 0
+        - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+        - STRETCH: Give cars ability to `.drive(distance)`. The distance driven:
+            + Should cause the `odometer` to go up.
+            + Should cause the the `tank` to go down taking `milesPerGallon` into account.
+        - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
+            + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
+    */
 
 function Car(model, milesPerGallon) {
     this.model = model;
@@ -106,7 +104,7 @@ Car.prototype.drive = function(distance) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby(name, age, favoriteToy) {
-    Person.call(this, name, age, favoriteToy)
+    Person.call(this, name, age, favoriteToy);
     this.favoriteToy = favoriteToy;
 
 }
