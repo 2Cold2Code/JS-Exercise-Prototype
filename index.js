@@ -119,10 +119,10 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. Global/window, where it refers to the window in a browser or the global/console in node.
-  2. New, where, when the keyword 'New' declares an object, it refers to the object to which new refers.
-  3. Implicit, where the period to the right signifies a property on the object of which it is a part.
-  4. Explicit, ...
+        1. Global/window, where it refers to the window in a browser or the global/console in node.
+        2. New, where, when the keyword 'New' declares an object, it refers to the object to which new refers.
+        3. Implicit, where the period to the right signifies a property on the object of which it is a part.
+        4. Explicit, ...
 */
 
 
